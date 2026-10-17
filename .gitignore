@@ -218,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Артефакты экспериментов ЛР0
+runs/
+mlartifacts/
+mlflow.db
+optuna.db
