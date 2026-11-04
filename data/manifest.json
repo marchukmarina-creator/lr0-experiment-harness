@@ -1,47 +1,44 @@
-manifest_data = {
-    "schema_version": 1,
-    "datasets": {
-        "load_digits": {
-            "source": "sklearn.datasets.load_digits",
-            "package": "scikit-learn",
-            "package_version": sklearn.__version__,
-            "total_records": int(len(y)),
-            "features_per_record": int(X.shape[1]),
-            "classes": [int(value) for value in np.unique(y)],
-            "feature_value_range": [
-                float(X.min()),
-                float(X.max()),
-            ],
-            "selection": {
-                "included_records": int(len(y)),
-                "excluded_records": 0,
-                "rule": "Использованы все записи набора load_digits без исключений",
-            },
-            "split": {
-                "file": "data/split.json",
-                "sha256": split_sha256,
-                "split_seed": split_seed,
-                "rule": (
-                    "Стратифицированное разбиение: сначала 20% в test, "
-                    "затем 25% остатка в val"
-                ),
-                "sizes": {
-                    "train": int(len(train_indices)),
-                    "val": int(len(val_indices)),
-                    "test": int(len(test_indices)),
-                },
-            },
-        }
-    },
+{
+  "datasets": {
+    "load_digits": {
+      "classes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "feature_value_range": [
+        0.0,
+        16.0
+      ],
+      "features_per_record": 64,
+      "package": "scikit-learn",
+      "package_version": "1.6.1",
+      "selection": {
+        "excluded_records": 0,
+        "included_records": 1797,
+        "rule": "Использованы все записи набора load_digits без исключений"
+      },
+      "source": "sklearn.datasets.load_digits",
+      "split": {
+        "file": "data/split.json",
+        "rule": "Стратифицированное разбиение: сначала 20% в test, затем 25% остатка в val",
+        "sha256": "d3ba070d3282c94e67fcf0f0bd7c10e0efc97dbcb00c07397313e14d38b5931a",
+        "sizes": {
+          "test": 360,
+          "train": 1077,
+          "val": 360
+        },
+        "split_seed": 0
+      },
+      "total_records": 1797
+    }
+  },
+  "schema_version": 1
 }
-
-manifest_path = data_directory / "manifest.json"
-
-with manifest_path.open("w", encoding="utf-8", newline="\n") as file:
-    json.dump(manifest_data, file, ensure_ascii=False, indent=2, sort_keys=True)
-    file.write("\n")
-
-print("Создан файл:", manifest_path)
-print("Размер файла:", manifest_path.stat().st_size, "байт")
-print("Версия scikit-learn:", sklearn.__version__)
-print("Хеш split.json в манифесте:", manifest_data["datasets"]["load_digits"]["split"]["sha256"])
