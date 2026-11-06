@@ -224,3 +224,4 @@ runs/
 mlartifacts/
 mlflow.db
 optuna.db
+mlruns/
