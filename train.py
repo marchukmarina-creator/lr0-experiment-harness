@@ -23,6 +23,7 @@ import numpy as np
 import sklearn
 import torch
 import yaml
+from mlflow.tracking import MlflowClient
 from sklearn.datasets import load_digits
 from torch import nn
 from torch.utils.data import DataLoader, TensorDataset
@@ -484,9 +485,11 @@ def run_experiment(
         metadata["status"] = "pruned"
         metadata["finished_at"] = utc_now()
         write_json(metadata_path, metadata)
-        if mlflow.active_run():
-            mlflow.set_tag("state", "PRUNED")
-            mlflow.log_artifacts(str(run_directory))
+        child_run_id = metadata.get("mlflow_run_id")
+        if child_run_id:
+            client = MlflowClient()
+            client.set_tag(child_run_id, "state", "PRUNED")
+            client.log_artifacts(child_run_id, str(run_directory))
         raise
     except Exception as error:
         metadata["status"] = "failed"
@@ -494,9 +497,11 @@ def run_experiment(
         metadata["error"] = str(error)
         metadata["traceback"] = traceback.format_exc()
         write_json(metadata_path, metadata)
-        if mlflow.active_run():
-            mlflow.set_tag("state", "FAIL")
-            mlflow.log_artifacts(str(run_directory))
+        child_run_id = metadata.get("mlflow_run_id")
+        if child_run_id:
+            client = MlflowClient()
+            client.set_tag(child_run_id, "state", "FAIL")
+            client.log_artifacts(child_run_id, str(run_directory))
         raise
 
 
