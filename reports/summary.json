@@ -1,0 +1,69 @@
+{
+  "experiment1": {
+    "maximum": 0.9611111111111111,
+    "median": 0.9583333333333334,
+    "minimum": 0.9555555555555556,
+    "range": 0.005555555555555536
+  },
+  "final": {
+    "base_spread": 0.005555555555555536,
+    "delta_test_maximum": 0.030555555555555558,
+    "delta_test_median": 0.02499999999999991,
+    "delta_test_minimum": -0.011111111111111183,
+    "delta_test_values": [
+      -0.011111111111111183,
+      0.030555555555555558,
+      0.025000000000000022,
+      0.011111111111111183,
+      0.02499999999999991
+    ],
+    "delta_val_maximum": 0.022222222222222254,
+    "delta_val_median": 0.022222222222222254,
+    "delta_val_minimum": 0.002777777777777768,
+    "delta_val_values": [
+      0.002777777777777768,
+      0.022222222222222254,
+      0.022222222222222143,
+      0.022222222222222254,
+      0.022222222222222254
+    ],
+    "fixed_test_total": 54,
+    "mean_base_test": 0.9488888888888889,
+    "mean_base_val": 0.9527777777777777,
+    "mean_best_test": 0.9650000000000001,
+    "mean_best_val": 0.971111111111111,
+    "spoiled_test_total": 25,
+    "stable_by_assignment_rule": false
+  },
+  "optuna": {
+    "actual_epochs": 833,
+    "actual_training_seconds": 81.05109614500223,
+    "best_params": {
+      "batch_size": 128,
+      "dropout": 0.050270207171060705,
+      "hidden": 438,
+      "lr": 0.005756867015168353,
+      "n_layers": 3,
+      "weight_decay": 1.7694297178024922e-05
+    },
+    "best_trial": 39,
+    "best_value": 0.9833333333333333,
+    "estimated_saved_training_seconds": 28.695394150994606,
+    "maximum_epochs": 1200,
+    "param_importance": {
+      "batch_size": 0.025421634053412915,
+      "dropout": 0.4186593036896728,
+      "hidden": 0.19506248705998203,
+      "lr": 0.33802605434810423,
+      "n_layers": 0.01628286471830273,
+      "weight_decay": 0.00654765613052524
+    },
+    "saved_epoch_fraction": 0.30583333333333335,
+    "saved_epochs": 367,
+    "states": {
+      "COMPLETE": 25,
+      "PRUNED": 15
+    },
+    "total_trials": 40
+  }
+}
